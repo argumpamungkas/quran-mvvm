@@ -7,7 +7,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-val newtorkModule = module {
+val networkModule = module {
     single { provideOkHttpClient() }
     single { provideRetrofit(get()) }
     single { provideApi(get()) }

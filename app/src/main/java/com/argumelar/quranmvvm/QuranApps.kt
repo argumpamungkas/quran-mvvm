@@ -2,8 +2,8 @@ package com.argumelar.quranmvvm
 
 import android.app.Application
 import com.argumelar.quranmvvm.model.repositoryModule
-import com.argumelar.quranmvvm.network.newtorkModule
-import com.argumelar.quranmvvm.ui.detail.detailModule
+import com.argumelar.quranmvvm.network.networkModule
+import com.argumelar.quranmvvm.ui.detail.detailViewModel
 import com.argumelar.quranmvvm.ui.detail.moduleDetail
 import com.argumelar.quranmvvm.ui.home.homeModule
 import com.argumelar.quranmvvm.ui.home.homeViewModel
@@ -22,13 +22,13 @@ class QuranApps: Application() {
             androidLogger()
             androidContext(this@QuranApps)
             modules(
-                newtorkModule,
+                networkModule,
                 repositoryModule,
                 moduleSplash,
                 homeViewModel,
                 homeModule,
                 moduleDetail,
-                detailModule
+                detailViewModel
             )
         }
     }

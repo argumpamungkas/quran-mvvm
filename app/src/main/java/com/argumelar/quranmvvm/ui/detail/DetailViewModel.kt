@@ -9,7 +9,7 @@ import com.argumelar.quranmvvm.model.RepositoryQuran
 import kotlinx.coroutines.launch
 import org.koin.dsl.module
 
-val detailModule = module {
+val detailViewModel = module {
     factory { DetailViewModel(get()) }
 }
 
