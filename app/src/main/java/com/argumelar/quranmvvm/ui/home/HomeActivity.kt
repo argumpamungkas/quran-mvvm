@@ -1,6 +1,8 @@
 package com.argumelar.quranmvvm.ui.home
 
 import android.content.Intent
+import android.media.AudioManager
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -9,6 +11,7 @@ import com.argumelar.quranmvvm.databinding.ActivityHomeBinding
 import com.argumelar.quranmvvm.model.QuranModel
 import com.argumelar.quranmvvm.ui.adapter.ListAdapter
 import com.argumelar.quranmvvm.ui.detail.DetailActivity
+import okio.IOException
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.dsl.module
 
@@ -20,7 +23,7 @@ class HomeActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityHomeBinding
     private val viewModel: MainViewModel by viewModel()
-
+    var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,9 +46,39 @@ class HomeActivity : AppCompatActivity() {
             override fun onClick(quran: QuranModel) {
                 startActivity(
                     Intent(applicationContext, DetailActivity::class.java)
-                    .putExtra("nama_surat", quran)
+                        .putExtra("nama_surat", quran)
                 )
 //                Toast.makeText(requireContext(), quran.name, Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onPlaySurah(quran: QuranModel) {
+                Toast.makeText(applicationContext, "Play surah ${quran.name}", Toast.LENGTH_SHORT).show()
+                mediaPlayer = MediaPlayer()
+                mediaPlayer!!.setAudioStreamType(AudioManager.STREAM_MUSIC)
+                mediaPlayer!!.setDataSource(quran.recitation.toString())
+                mediaPlayer!!.prepare()
+                mediaPlayer!!.start()
+
+
+//                if (!mediaPlayer!!.isPlaying) {
+//                    Toast.makeText(applicationContext, "Play surah ${quran.name}", Toast.LENGTH_SHORT).show()
+//                    try {
+//                        mediaPlayer!!.setDataSource(quran.recitation.toString())
+//                        mediaPlayer!!.prepare()
+//                        mediaPlayer!!.start()
+//                    } catch (e: IOException) {
+//                        e.printStackTrace()
+//                    }
+//                } else {
+//                    try {
+//                        Toast.makeText(applicationContext, "Stop surah", Toast.LENGTH_SHORT).show()
+//                        mediaPlayer!!.pause()
+//                        mediaPlayer!!.stop()
+//                        mediaPlayer!!.reset()
+//                    } catch (e: IOException) {
+//                        e.printStackTrace()
+//                    }
+//                }
             }
 
         })

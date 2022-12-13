@@ -10,7 +10,7 @@
         android:id="@+id/logo"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/logo_quran"
+        android:src="@drawable/logo_quran_new"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,7 +22,7 @@
         android:fontFamily="@font/amita_bold"
         android:text="QUR'AN MVVM"
         android:textSize="30sp"
-        android:textColor="#42929d"
+        android:textColor="@color/font_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logo" />

@@ -7,4 +7,11 @@
     <color name="teal_700">#6200EA</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="bg_card">#ECECE9</color>
+    <color name="font_color">#A27B59</color>
+    <color name="border_card">#CFCCC1</color>
+
+<!--BAR-->
+    <color name="primaryVariant">#AA8B6F</color>
+    <color name="primary">#A27B59</color>
 </resources>

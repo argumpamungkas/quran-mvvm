@@ -22,7 +22,6 @@ class DetailAdapter(val surahs : ArrayList<Verses>): RecyclerView.Adapter<Detail
         val surah = surahs[position]
         holder.binding.textSurat.text = surah.text
         holder.binding.tvTranslate.text = surah.number.toString() + ". " + surah.translation_id
-
     }
 
     override fun getItemCount(): Int {

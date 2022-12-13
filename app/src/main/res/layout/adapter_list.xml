@@ -1,42 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="5dp"
-    app:cardCornerRadius="15dp"
-    android:elevation="5dp"
-    app:strokeWidth="1dp"
-    app:strokeColor="@android:color/darker_gray">
+    android:backgroundTint="@color/bg_card"
+    android:elevation="10dp"
+    app:strokeWidth="0.5dp"
+    app:strokeColor="@color/border_card">
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:padding="5dp"
-        android:layout_margin="10dp">
+        android:layout_marginVertical="10dp">
+
+        <RelativeLayout
+            android:id="@+id/rl"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_simbol_number"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_number_surat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="1"
+                android:textColor="@color/font_color" />
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/tv_nama_surat"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
+            android:layout_marginHorizontal="10dp"
             android:text="Surat"
-            android:textSize="20sp"
-            android:textColor="@color/black"
+            android:textColor="@color/font_color"
+            android:fontFamily="@font/alzaina"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/tv_translate"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toEndOf="@id/rl"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_translate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Translate"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_nama_surat"
+            android:layout_marginHorizontal="10dp"
+            android:text="TRANSLATE"
+            android:fontFamily="@font/alzaina"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/rl"
+            app:layout_constraintTop_toBottomOf="@id/tv_nama_surat" />
+
+        <TextView
+            android:id="@+id/tv_ar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEXT"
+            android:fontFamily="@font/arabic_ramadhan"
+            android:textSize="30sp"
+            android:textColor="@color/font_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
 

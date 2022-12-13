@@ -13,5 +13,6 @@ data class QuranModel(
 ) : Serializable
 
 data class NameTranslation(
-    val id: String?
+    val id: String?,
+    val ar: String?
 ) : Serializable

@@ -16,22 +16,22 @@ class MainViewModel(
     val repository: RepositoryQuran
 ) : ViewModel() {
 
-//    val title = "Quran Aplikasi"
-    val message by lazy {MutableLiveData<String>()}
-    val quran by lazy {MutableLiveData<List<QuranModel>>()}
+    //    val title = "Quran Aplikasi"
+    val message by lazy { MutableLiveData<String>() }
+    val quran by lazy { MutableLiveData<List<QuranModel>>() }
 
     init {
 //        message.value = null
         fetch()
     }
 
-    private fun fetch(){
+    private fun fetch() {
         viewModelScope.launch {
             try {
                 val response = repository.fetchApi()
                 quran.value = response
                 message.value = "Quran MVVM"
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 message.value = "GAGAL"
             }
         }
