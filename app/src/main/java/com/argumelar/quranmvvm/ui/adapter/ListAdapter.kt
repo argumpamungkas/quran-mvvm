@@ -16,8 +16,6 @@ class ListAdapter(
     val listener: OnAdapterListener
 ): RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
-    var mediaPlayer: MediaPlayer? = null
-
     class ViewHolder(val binding: AdapterListBinding): RecyclerView.ViewHolder(binding.root) {
 
     }
@@ -51,6 +49,5 @@ class ListAdapter(
 
     interface OnAdapterListener{
         fun onClick(quran: QuranModel)
-        fun onPlaySurah(quran: QuranModel)
     }
 }

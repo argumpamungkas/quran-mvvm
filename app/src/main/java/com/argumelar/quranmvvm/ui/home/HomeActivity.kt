@@ -51,36 +51,6 @@ class HomeActivity : AppCompatActivity() {
 //                Toast.makeText(requireContext(), quran.name, Toast.LENGTH_SHORT).show()
             }
 
-            override fun onPlaySurah(quran: QuranModel) {
-                Toast.makeText(applicationContext, "Play surah ${quran.name}", Toast.LENGTH_SHORT).show()
-                mediaPlayer = MediaPlayer()
-                mediaPlayer!!.setAudioStreamType(AudioManager.STREAM_MUSIC)
-                mediaPlayer!!.setDataSource(quran.recitation.toString())
-                mediaPlayer!!.prepare()
-                mediaPlayer!!.start()
-
-
-//                if (!mediaPlayer!!.isPlaying) {
-//                    Toast.makeText(applicationContext, "Play surah ${quran.name}", Toast.LENGTH_SHORT).show()
-//                    try {
-//                        mediaPlayer!!.setDataSource(quran.recitation.toString())
-//                        mediaPlayer!!.prepare()
-//                        mediaPlayer!!.start()
-//                    } catch (e: IOException) {
-//                        e.printStackTrace()
-//                    }
-//                } else {
-//                    try {
-//                        Toast.makeText(applicationContext, "Stop surah", Toast.LENGTH_SHORT).show()
-//                        mediaPlayer!!.pause()
-//                        mediaPlayer!!.stop()
-//                        mediaPlayer!!.reset()
-//                    } catch (e: IOException) {
-//                        e.printStackTrace()
-//                    }
-//                }
-            }
-
         })
     }
 }
