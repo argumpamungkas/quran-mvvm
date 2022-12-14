@@ -95,4 +95,7 @@ dependencies {
     // Timber untuk mendapatkan Log
     implementation "com.jakewharton.timber:timber:5.0.1"
 
+//    Expandable
+    implementation "com.github.skydoves:expandablelayout:1.0.7"
+
 }

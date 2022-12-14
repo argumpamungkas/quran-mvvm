@@ -1,17 +1,17 @@
 package com.argumelar.quranmvvm.ui.home
 
 import android.content.Intent
-import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.argumelar.quranmvvm.databinding.ActivityHomeBinding
+import com.argumelar.quranmvvm.databinding.AdapterListBinding
 import com.argumelar.quranmvvm.model.QuranModel
 import com.argumelar.quranmvvm.ui.adapter.ListAdapter
 import com.argumelar.quranmvvm.ui.detail.DetailActivity
-import okio.IOException
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.dsl.module
 
@@ -22,13 +22,13 @@ val homeModule = module {
 class HomeActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityHomeBinding
-    private val viewModel: MainViewModel by viewModel()
-    var mediaPlayer: MediaPlayer? = null
+    lateinit var bindingContent: AdapterListBinding
+    private val viewModel: HomeViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(binding.root,)
 
         binding.rvList.adapter = listAdapter
         viewModel.quran.observe(this) {
@@ -49,6 +49,11 @@ class HomeActivity : AppCompatActivity() {
                         .putExtra("nama_surat", quran)
                 )
 //                Toast.makeText(requireContext(), quran.name, Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onPlay(quran: QuranModel) {
+                    viewModel.playSurah(quran.recitation.toString())
+
             }
 
         })

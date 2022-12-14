@@ -8,6 +8,7 @@ import com.argumelar.quranmvvm.model.DetailQuran
 import com.argumelar.quranmvvm.model.RepositoryQuran
 import kotlinx.coroutines.launch
 import org.koin.dsl.module
+import kotlin.math.exp
 
 val detailViewModel = module {
     factory { DetailViewModel(get()) }
@@ -20,9 +21,11 @@ class DetailViewModel(
 //    val title = "Detail Quran"
     val message by lazy { MutableLiveData<String>() }
     val quran by lazy { MutableLiveData<DetailQuran>()}
+    val expanded by lazy { MutableLiveData<Int>()}
 
     init {
         fetchDetail()
+        expanded.value = 0
     }
 
     private fun fetchDetail(){
@@ -36,6 +39,5 @@ class DetailViewModel(
             }
         }
     }
-
 
 }

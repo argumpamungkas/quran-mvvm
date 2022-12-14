@@ -1,6 +1,7 @@
 package com.argumelar.quranmvvm.ui.adapter
 
 import android.annotation.SuppressLint
+import android.media.AudioManager
 import android.media.MediaPlayer
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,11 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.argumelar.quranmvvm.databinding.AdapterListBinding
 import com.argumelar.quranmvvm.model.Constant
 import com.argumelar.quranmvvm.model.QuranModel
+import okio.IOException
 
 class ListAdapter(
     val qurans: ArrayList<QuranModel>,
     val listener: OnAdapterListener
 ): RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+
+    var mediaPlayer: MediaPlayer? = null
 
     class ViewHolder(val binding: AdapterListBinding): RecyclerView.ViewHolder(binding.root) {
 
@@ -31,6 +35,9 @@ class ListAdapter(
         holder.binding.tvTranslate.text = quran.name_translations!!.id + " (" + quran.number_of_ayah.toString() + ")"
         holder.binding.tvAr.text = quran.name_translations.ar
         holder.binding.tvNumberSurat.text = quran.number_of_surah.toString()
+        holder.binding.ibBtn.setOnClickListener {
+            listener.onPlay(quran)
+        }
         holder.itemView.setOnClickListener {
             Constant.SURAH = quran.number_of_surah!!
             listener.onClick(quran)
@@ -49,5 +56,6 @@ class ListAdapter(
 
     interface OnAdapterListener{
         fun onClick(quran: QuranModel)
+        fun onPlay(quran: QuranModel)
     }
 }
