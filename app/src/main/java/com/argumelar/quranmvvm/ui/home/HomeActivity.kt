@@ -22,7 +22,6 @@ val homeModule = module {
 class HomeActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityHomeBinding
-    lateinit var bindingContent: AdapterListBinding
     private val viewModel: HomeViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,11 +48,6 @@ class HomeActivity : AppCompatActivity() {
                         .putExtra("nama_surat", quran)
                 )
 //                Toast.makeText(requireContext(), quran.name, Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onPlay(quran: QuranModel) {
-                    viewModel.playSurah(quran.recitation.toString())
-
             }
 
         })

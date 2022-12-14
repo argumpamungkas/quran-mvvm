@@ -9,13 +9,17 @@ import android.transition.TransitionManager
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ScrollView
 import android.widget.Toast
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import com.argumelar.quranmvvm.R
 import com.argumelar.quranmvvm.databinding.ActivityDetailBinding
 import com.argumelar.quranmvvm.databinding.SurahDescBinding
 import com.argumelar.quranmvvm.model.QuranModel
 import com.argumelar.quranmvvm.ui.adapter.DetailAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.dsl.module
 
@@ -39,6 +43,7 @@ class DetailActivity : AppCompatActivity() {
         bindingContent = binding.containerDesc
         setContentView(binding.root)
 
+
         supportActionBar!!.title = namaSurat.name
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
@@ -56,6 +61,18 @@ class DetailActivity : AppCompatActivity() {
             bindingContent.arrowButton.setOnClickListener {
                 expandData()
             }
+
+            viewModel.playSurah.observe(this,) {
+                if (it == 0){
+                    binding.btnPlay.setImageResource(R.drawable.ic_play)
+                } else {
+                    binding.btnPlay.setImageResource(R.drawable.ic_stop)
+                }
+            }
+            binding.btnPlay.setOnClickListener {
+                viewModel.playSurah(namaSurat.recitation.toString())
+            }
+            scrollListener()
         }
 
         viewModel.message.observe(this) {
@@ -76,18 +93,32 @@ class DetailActivity : AppCompatActivity() {
         DetailAdapter(arrayListOf())
     }
 
+    private fun scrollListener(){
+
+        binding.scrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            if (scrollY > oldScrollY + 10){
+                binding.btnPlay.hide()
+            }
+
+            if (scrollY < oldScrollY - 10){
+                binding.btnPlay.show()
+            }
+
+            if (scrollY == 0){
+                binding.btnPlay.show()
+            }
+        })
+
+    }
+
     private fun expandData() {
         val fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out)
         if (bindingContent.hiddenView.visibility == View.VISIBLE) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                TransitionManager.beginDelayedTransition(bindingContent.cardDesc, AutoTransition())
-            }
+            TransitionManager.beginDelayedTransition(bindingContent.cardDesc, AutoTransition())
             bindingContent.hiddenView.visibility = View.GONE
             bindingContent.arrowButton.setImageResource(R.drawable.ic_arrow_down)
         } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                TransitionManager.beginDelayedTransition(bindingContent.cardDesc, AutoTransition())
-            }
+            TransitionManager.beginDelayedTransition(bindingContent.cardDesc, AutoTransition())
             bindingContent.hiddenView.visibility = View.VISIBLE
             bindingContent.arrowButton.setImageResource(R.drawable.ic_arrow_up)
         }

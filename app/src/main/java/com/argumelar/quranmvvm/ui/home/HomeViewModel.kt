@@ -21,17 +21,15 @@ class HomeViewModel(
     val repository: RepositoryQuran,
 ) : ViewModel() {
 
-    var mediaPlayer = MediaPlayer()
-
     //    val title = "Quran Aplikasi"
     val message by lazy { MutableLiveData<String>() }
     val quran by lazy { MutableLiveData<List<QuranModel>>() }
-    val playSurah by lazy { MutableLiveData<Int>() }
+
 
     init {
         message.value = null
         fetch()
-        playSurah.value = 0
+
     }
 
     private fun fetch() {
@@ -46,37 +44,5 @@ class HomeViewModel(
         }
     }
 
-    fun playSurah(url: String){
-        viewModelScope.launch {
-            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
-            mediaPlayer.setOnCompletionListener {
-                mediaPlayer.setDataSource(url)
-                mediaPlayer.prepare()
-                mediaPlayer.start()
-            }
-            if (!mediaPlayer.isPlaying){
-//                Log.i("playSurah", "ON")
-                message.value = "PLAY"
-                try {
-                    mediaPlayer.setDataSource(url)
-                    mediaPlayer.prepare()
-                    mediaPlayer.start()
-                } catch (e:IOException){
-                    e.printStackTrace()
-                }
 
-            } else {
-//                Log.i("playSurah", "OFF")
-                message.value = "STOP"
-                try {
-                    Log.i("playSurah", "OFF NIH")
-                    mediaPlayer.pause()
-                    mediaPlayer.stop()
-                    mediaPlayer.reset()
-                } catch (e:IOException){
-                    e.printStackTrace()
-                }
-            }
-        }
-    }
 }

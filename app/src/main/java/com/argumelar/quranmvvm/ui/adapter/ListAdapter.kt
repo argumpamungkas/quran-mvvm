@@ -35,9 +35,6 @@ class ListAdapter(
         holder.binding.tvTranslate.text = quran.name_translations!!.id + " (" + quran.number_of_ayah.toString() + ")"
         holder.binding.tvAr.text = quran.name_translations.ar
         holder.binding.tvNumberSurat.text = quran.number_of_surah.toString()
-        holder.binding.ibBtn.setOnClickListener {
-            listener.onPlay(quran)
-        }
         holder.itemView.setOnClickListener {
             Constant.SURAH = quran.number_of_surah!!
             listener.onClick(quran)
@@ -56,6 +53,5 @@ class ListAdapter(
 
     interface OnAdapterListener{
         fun onClick(quran: QuranModel)
-        fun onPlay(quran: QuranModel)
     }
 }
